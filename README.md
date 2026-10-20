@@ -13,9 +13,9 @@ Gemini / OpenAI / Claude の 3 社の API を、パネルの上部で切り替�
 
 | | |
 | --- | --- |
-| 最新バージョン | **0.3.2**（2026年10月20日 更新） |
-| ダウンロード | [`ai-consult-0.3.2.zip`](https://github.com/Uechi-Shingo/ai-consult/raw/main/releases/ai-consult-0.3.2.zip) |
-| SHA-256 | `486344938b21d9d7fba01e2301e8fcb1ca332c296cc3826b424eef22cba65055` |
+| 最新バージョン | **0.3.3**（2026年10月20日 更新） |
+| ダウンロード | [`ai-consult-0.3.3.zip`](https://github.com/Uechi-Shingo/ai-consult/raw/main/releases/ai-consult-0.3.3.zip) |
+| SHA-256 | `f113b9138a82abd52b660435114214ea179f4fc8863d12f2c29633a985691663` |
 <!-- release:end -->
 
 ## 使い方
