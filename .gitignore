@@ -1,0 +1,25 @@
+# 配布用ファイルの作業場所（make-release.ps1 が作る）。公開用の最新版は releases/ に置かれる
+dist/
+
+# 確認用に生成するファイル
+*.built.html
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# 秘密鍵・環境変数・ログ（万一置いてしまっても、コミットされないように）
+*.pem
+*.key
+*.crx
+.env
+.env.*
+*.log
+
+# OS・エディタ・Claude Code のこのパソコン専用の設定
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+.claude/

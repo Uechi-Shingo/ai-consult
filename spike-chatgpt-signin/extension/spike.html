@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatGPTサインイン試作</title>
+  <link rel="stylesheet" href="spike.css">
+</head>
+<body>
+  <main>
+    <h1>ChatGPTサインイン試作</h1>
+    <p class="lead">
+      「Sign in with ChatGPT」の戻り先を、拡張機能が検知して、トークンを取得できるかを確かめる試作です。
+      上から順に進めてください。トークンは、この拡張機能のメモリにだけ置き、画面には伏せ字でしか出しません。
+    </p>
+
+    <section class="card">
+      <h2>1. サインインを始める</h2>
+      <p class="hint">戻り先: <code id="redirect"></code>（この待ち受けは、拡張機能が URL を検知して行います）</p>
+      <div class="row">
+        <button id="start" type="button" class="primary">ChatGPT でサインイン</button>
+        <button id="cancel" type="button">待ち受けをやめる</button>
+      </div>
+      <p id="start-status" class="status"></p>
+    </section>
+
+    <section class="card">
+      <h2>2. 戻り先の検知</h2>
+      <p class="hint">ログインと承認のあと、戻り先を検知できた方法に ✓ が付きます。</p>
+      <ul id="detections" class="plain"></ul>
+    </section>
+
+    <section class="card">
+      <h2>3. トークンの取得</h2>
+      <dl id="token"></dl>
+      <p id="token-status" class="status"></p>
+      <div class="row">
+        <button id="refresh" type="button">トークンを更新（テスト）</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4. モデル一覧</h2>
+      <div class="row">
+        <button id="models" type="button">一覧を取得</button>
+        <span id="models-status" class="status"></span>
+      </div>
+      <ul id="model-list" class="plain"></ul>
+    </section>
+
+    <section class="card">
+      <h2>5. 短い質問</h2>
+      <p class="hint">ChatGPT の利用枠を、ごく少量使います（1 回の短い質問です）。</p>
+      <div class="row">
+        <select id="model" aria-label="モデル"></select>
+      </div>
+      <div class="row">
+        <input id="question" type="text" value="こんにちは。1+1 は？ 一言で答えてください。" aria-label="質問">
+        <button id="chat" type="button">送る</button>
+      </div>
+      <pre id="answer"></pre>
+      <p id="chat-status" class="status"></p>
+    </section>
+
+    <section class="card">
+      <h2>経過</h2>
+      <ul id="log" class="plain"></ul>
+      <div class="row">
+        <button id="sign-out" type="button">この拡張機能に保存したものを消す</button>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="spike.js"></script>
+</body>
+</html>

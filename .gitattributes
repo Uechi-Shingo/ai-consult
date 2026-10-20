@@ -1,0 +1,5 @@
+# Line endings are normalized automatically (Windows vs other OS). Binary files and checksums are left as they are.
+* text=auto
+*.zip binary
+*.png binary
+*.sha256.txt -text

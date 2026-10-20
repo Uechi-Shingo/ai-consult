@@ -1,0 +1,59 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --card: #f6f8fa;
+  --text: #1f2328;
+  --muted: #656d76;
+  --border: #d0d7de;
+  --accent: #0969da;
+  --accent-text: #ffffff;
+  --ok: #1a7f37;
+  --error: #cf222e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1d21;
+    --card: #24272c;
+    --text: #e6e8eb;
+    --muted: #9aa4af;
+    --border: #3a3f47;
+    --accent: #4493f8;
+    --accent-text: #0d1117;
+    --ok: #56d364;
+    --error: #ff7b72;
+  }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.7 system-ui, 'Yu Gothic UI', 'Meiryo', sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { font-size: 20px; margin: 0 0 4px; }
+h2 { font-size: 15px; margin: 0 0 6px; }
+.lead { margin: 0 0 16px; color: var(--muted); }
+.hint { margin: 0 0 8px; color: var(--muted); font-size: 12px; }
+.card { margin-bottom: 14px; padding: 12px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 6px; }
+code { font: 12px ui-monospace, Consolas, monospace; background: var(--bg); padding: 1px 5px; border-radius: 4px; border: 1px solid var(--border); }
+
+button, input, select { font: inherit; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; }
+input[type='text'] { flex: 1; min-width: 240px; }
+button { cursor: pointer; }
+button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+button:disabled { opacity: 0.5; cursor: default; }
+
+.status { min-height: 1.4em; margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+.status.ok { color: var(--ok); }
+.status.error { color: var(--error); }
+
+ul.plain { list-style: none; margin: 4px 0 0; padding: 0; font-size: 13px; }
+ul.plain li { padding: 2px 0; overflow-wrap: anywhere; }
+.ok { color: var(--ok); }
+.error { color: var(--error); }
+.muted { color: var(--muted); }
+
+dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 2px 14px; font-size: 13px; }
+dt { color: var(--muted); }
+dd { margin: 0; overflow-wrap: anywhere; }
+
+pre { margin: 8px 0 0; padding: 8px 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; white-space: pre-wrap; min-height: 2.4em; }

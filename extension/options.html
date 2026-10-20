@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIに相談 - 設定</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>AIに相談 — 設定 <span id="version" class="version"></span></h1>
+    <p class="lead">変更したら、下の「保存」を押してください。押すまでは反映されません。</p>
+
+    <section class="card" id="notice">
+      <h2>最初にお読みください</h2>
+      <ul>
+        <li>質問を送ると、<strong>表示中のページの本文</strong>が、選んだ提供元（Google / OpenAI / Anthropic）に送られます。メール・社内文書・個人情報のあるページでは使わないでください。</li>
+        <li>Gemini の無料枠では、送った内容が提供元の製品改善に使われ、人が確認することがあります。EEA・スイス・英国では、無料枠が使えない場合があります（Google の「Gemini API 追加利用規約」をご確認ください）。</li>
+        <li>OpenAI・Claude の API は有料（従量課金）です。ChatGPT や Claude.ai の契約とは別に、API キーと残高が必要です。</li>
+        <li>APIキーは、このブラウザの拡張機能の保存領域にだけ保存し、各提供元への通信以外には使いません。ただし暗号化はされません。共用のパソコンでは、下の「保存しておく」をオフにしてください。</li>
+        <li>個人が作成した非公式のツールで、各提供元とは関係がありません。無保証で、利用は自己責任です。</li>
+      </ul>
+      <label class="check"><input type="checkbox" id="ack"> 上の内容を確認しました</label>
+    </section>
+
+    <section id="providers"></section>
+
+    <section class="card">
+      <h2>使う提供元</h2>
+      <p class="hint">パネルを開いたときの既定です。パネルの上部でいつでも切り替えられます。</p>
+      <select id="default-provider" aria-label="既定の提供元"></select>
+    </section>
+
+    <section class="card">
+      <h2>保存の方法</h2>
+      <label class="check"><input type="checkbox" id="remember"> APIキーをこのパソコンに保存しておく</label>
+      <p class="hint">オフにすると、ブラウザを閉じたときにキーを忘れます（毎回入力が必要です）。</p>
+    </section>
+  </main>
+
+  <div class="actions" id="actions">
+    <div class="actions-inner">
+      <span id="dirty" class="dirty" role="status"></span>
+      <span class="spacer"></span>
+      <button id="close" type="button">閉じる</button>
+      <button id="save-close" type="button">保存して閉じる</button>
+      <button id="save" type="button" class="primary">保存</button>
+    </div>
+    <p id="save-status" class="status" role="status"></p>
+  </div>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>

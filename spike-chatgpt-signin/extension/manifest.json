@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPTサインイン試作",
+  "version": "0.0.1",
+  "description": "「Sign in with ChatGPT」の戻り先を拡張機能が検知して、トークンを取得できるかを確かめる試作です。",
+  "minimum_chrome_version": "120",
+  "permissions": ["storage", "webRequest", "webNavigation"],
+  "host_permissions": ["http://127.0.0.1/*", "https://auth.openai.com/*", "https://api.openai.com/*"],
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; script-src 'self'; style-src 'self'; connect-src https://auth.openai.com https://api.openai.com; base-uri 'none'"
+  },
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "ChatGPTサインイン試作を開く" }
+}

@@ -1,0 +1,95 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --card: #f6f8fa;
+  --text: #1f2328;
+  --muted: #656d76;
+  --border: #d0d7de;
+  --accent: #0969da;
+  --accent-text: #ffffff;
+  --ok: #1a7f37;
+  --error: #cf222e;
+  --warn: #9a6700;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1d21;
+    --card: #24272c;
+    --text: #e6e8eb;
+    --muted: #9aa4af;
+    --border: #3a3f47;
+    --accent: #4493f8;
+    --accent-text: #0d1117;
+    --ok: #56d364;
+    --error: #ff7b72;
+    --warn: #d4a72c;
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.7 system-ui, 'Yu Gothic UI', 'Meiryo', sans-serif;
+}
+
+main { max-width: 720px; margin: 0 auto; padding: 24px 16px 24px; }
+h1 { font-size: 20px; margin: 0 0 4px; }
+h2 { font-size: 15px; margin: 0 0 8px; }
+h3 { font-size: 14px; margin: 0 0 4px; }
+.lead { margin: 0 0 16px; color: var(--muted); }
+.version { margin-left: 6px; color: var(--muted); font-size: 12px; font-weight: normal; }
+
+.card { margin-bottom: 16px; padding: 14px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+.card ul { margin: 0 0 10px; padding-left: 20px; }
+.card li { margin: 4px 0; }
+.hint { margin: 4px 0 8px; color: var(--muted); font-size: 12px; }
+.check { display: flex; gap: 8px; align-items: flex-start; }
+
+.provider + .provider { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 6px; }
+
+input[type='password'], select {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 8px;
+}
+input[type='password'] { flex: 1; min-width: 220px; }
+select { min-width: 200px; max-width: 100%; }
+
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+button:disabled { opacity: 0.5; cursor: default; }
+
+.status { min-height: 1.5em; margin: 6px 0 0; font-size: 13px; }
+.status.ok { color: var(--ok); }
+.status.error { color: var(--error); }
+
+/* 画面の下に固定する操作バー。長いページでも「保存」「閉じる」がいつも見える */
+.actions {
+  position: sticky;
+  bottom: 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 10px 16px;
+}
+.actions-inner { max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.actions .status { max-width: 720px; margin: 6px auto 0; }
+.spacer { flex: 1; }
+.dirty { font-size: 13px; color: var(--muted); }
+.dirty.warn { color: var(--warn); font-weight: 600; }

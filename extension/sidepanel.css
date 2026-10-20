@@ -1,0 +1,112 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --panel: #f6f8fa;
+  --text: #1f2328;
+  --muted: #656d76;
+  --border: #d0d7de;
+  --accent: #0969da;
+  --accent-text: #ffffff;
+  --user-bg: #ddf4ff;
+  --error: #cf222e;
+  --warn-bg: #fff8c5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1d21;
+    --panel: #24272c;
+    --text: #e6e8eb;
+    --muted: #9aa4af;
+    --border: #3a3f47;
+    --accent: #4493f8;
+    --accent-text: #0d1117;
+    --user-bg: #1d3a5a;
+    --error: #ff7b72;
+    --warn-bg: #3b3417;
+  }
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.6 system-ui, 'Yu Gothic UI', 'Meiryo', sans-serif;
+}
+
+header, footer { flex: none; padding: 8px 10px; background: var(--panel); }
+header { border-bottom: 1px solid var(--border); }
+footer { border-top: 1px solid var(--border); }
+
+.row { display: flex; align-items: center; gap: 6px; }
+.row + .row { margin-top: 6px; }
+.spacer { flex: 1; }
+.context { color: var(--muted); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex: 1; }
+.context.wrap { white-space: normal; overflow: visible; text-overflow: clip; }
+.version { color: var(--muted); font-size: 11px; }
+.foot { margin-top: 6px; color: var(--muted); font-size: 11px; }
+
+select, textarea, button {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+select { padding: 4px 6px; min-width: 0; flex: 1; }
+button { padding: 5px 10px; cursor: pointer; }
+button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+button.link { border: none; background: none; color: var(--accent); padding: 0 4px; }
+button:disabled { opacity: 0.5; cursor: default; }
+
+.notice { margin-top: 8px; padding: 8px 10px; border-radius: 6px; background: var(--warn-bg); }
+.notice p { margin: 0 0 6px; }
+
+main { flex: 1; min-height: 0; overflow-y: auto; padding: 10px; }
+
+.msg { margin-bottom: 12px; }
+.msg.user .body {
+  margin-left: 24px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--user-bg);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.msg.assistant .body { overflow-wrap: anywhere; }
+.msg.assistant.streaming .body:empty::after { content: '…'; color: var(--muted); }
+.msg .extra { margin-top: 4px; font-size: 12px; color: var(--muted); }
+.msg .extra.error { color: var(--error); }
+.msg .extra .actions { margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px; }
+.system { margin-bottom: 12px; color: var(--muted); font-size: 12px; text-align: center; }
+
+.body > :first-child { margin-top: 0; }
+.body > :last-child { margin-bottom: 0; }
+.body p { margin: 0 0 8px; }
+.body h3, .body h4, .body h5, .body h6 { margin: 12px 0 6px; font-size: 14px; }
+.body ul, .body ol { margin: 0 0 8px; padding-left: 22px; }
+.body li { margin: 2px 0; }
+.body code { font: 12px/1.5 ui-monospace, Consolas, monospace; background: var(--panel); border-radius: 4px; padding: 1px 4px; }
+.body pre { margin: 0 0 8px; padding: 8px; overflow-x: auto; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; }
+.body pre code { background: none; padding: 0; }
+.body blockquote { margin: 0 0 8px; padding: 0 10px; border-left: 3px solid var(--border); color: var(--muted); }
+.body hr { border: none; border-top: 1px solid var(--border); margin: 10px 0; }
+.body a { color: var(--accent); }
+.body .table-wrap { overflow-x: auto; margin-bottom: 8px; }
+.body table { border-collapse: collapse; font-size: 12px; }
+.body th, .body td { border: 1px solid var(--border); padding: 3px 8px; text-align: left; }
+.body th { background: var(--panel); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.chips button { font-size: 12px; padding: 3px 8px; border-radius: 999px; }
+
+.composer { display: flex; gap: 6px; align-items: flex-end; }
+.composer textarea { flex: 1; min-width: 0; resize: none; padding: 6px 8px; max-height: 140px; }
+.composer .buttons { display: flex; flex-direction: column; gap: 4px; }

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIに相談</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <header>
+    <div class="row">
+      <select id="provider" aria-label="AIの提供元"></select>
+      <select id="model" aria-label="モデル"></select>
+    </div>
+    <div class="row">
+      <span id="context-text" class="context"></span>
+      <button id="reread" type="button" class="link" hidden>読み直す</button>
+    </div>
+    <div id="permission" class="notice" hidden>
+      <p id="permission-text"></p>
+      <button id="grant-all" type="button">すべてのサイトで読み取りを許可</button>
+    </div>
+  </header>
+
+  <main id="messages" aria-live="polite"></main>
+
+  <section id="onboarding" class="notice" hidden>
+    <p id="onboarding-text"></p>
+    <button id="onboarding-btn" type="button">設定を開く</button>
+  </section>
+
+  <footer>
+    <div id="chips" class="chips"></div>
+    <div class="composer">
+      <textarea id="input" rows="2" placeholder="このページについて質問（Enterで送信 / Shift+Enterで改行）"></textarea>
+      <div class="buttons">
+        <button id="send" type="button" class="primary">送信</button>
+        <button id="stop" type="button" hidden>停止</button>
+      </div>
+    </div>
+    <div class="row foot">
+      <span>送信すると、ページの本文が選んだ提供元に送られます。</span>
+      <span class="spacer"></span>
+      <span id="version" class="version"></span>
+      <button id="new-chat" type="button" class="link">新しい相談</button>
+      <button id="open-options" type="button" class="link">設定</button>
+    </div>
+  </footer>
+
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>
