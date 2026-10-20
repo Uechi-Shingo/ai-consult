@@ -64,6 +64,9 @@ select { padding: 4px 6px; min-width: 0; flex: 1; }
 button { padding: 5px 10px; cursor: pointer; }
 button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
 button.link { border: none; background: none; color: var(--accent); padding: 0 4px; }
+/* 角の「×」ボタン（パネルを閉じる）。選択欄の右に、小さな正方形で置く */
+button.icon { flex: none; width: 28px; height: 28px; padding: 0; font-size: 20px; line-height: 1; color: var(--muted); }
+button.icon:hover { color: var(--text); background: var(--border); }
 button:disabled { opacity: 0.5; cursor: default; }
 
 .notice { margin-top: 8px; padding: 8px 10px; border-radius: 6px; background: var(--warn-bg); }

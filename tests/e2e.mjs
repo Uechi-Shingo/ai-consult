@@ -9,7 +9,7 @@
 //
 // 確かめられないこと: ツールバーのアイコンを実際にクリックしたときの開閉と activeTab（ブラウザ本体の画面操作のため）。
 import { spawn } from 'node:child_process';
-import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
@@ -542,6 +542,25 @@ async function main() {
     xss.img === 0 && xss.script === 0 && xss.jsLinks === 0 && !xss.executed && xss.literal && /noopener/.test(xss.goodRel || ''),
     JSON.stringify(xss));
 
+  // 画面の見た目を目で確かめたいとき用: E2E_SCREENSHOT_DIR を指定すると、会話が表示されたパネルを、画像で保存する
+  if (process.env.E2E_SCREENSHOT_DIR) {
+    mkdirSync(process.env.E2E_SCREENSHOT_DIR, { recursive: true });
+    const shot = await cdp('Page.captureScreenshot', { format: 'png' }, panel);
+    writeFileSync(path.join(process.env.E2E_SCREENSHOT_DIR, 'panel.png'), Buffer.from(shot.data, 'base64'));
+  }
+
+  // 11b. パネルの角の「×」ボタン: 見える位置にあり、名前が付いている
+  const closeBtn = await P(`(() => {
+    const b = document.getElementById('close-panel');
+    if (!b) return null;
+    const r = b.getBoundingClientRect();
+    const header = document.querySelector('header').getBoundingClientRect();
+    return { label: b.getAttribute('aria-label'), text: b.textContent, w: r.width, h: r.height, insideHeader: r.top >= header.top && r.bottom <= header.bottom && r.right <= innerWidth };
+  })()`);
+  check('パネルの上部に、「×」の閉じるボタンがあり、名前（パネルを閉じる）が付いていて、はみ出していない',
+    !!closeBtn && closeBtn.label === 'パネルを閉じる' && closeBtn.text === '×' && closeBtn.w >= 24 && closeBtn.h >= 24 && closeBtn.insideHeader,
+    JSON.stringify(closeBtn));
+
   // 12b. 混雑（5xx）のときは、自動で再試行する。待っている間は「再試行しています」と表示する
   await idle();
   const reqCount = async () => (await requests()).filter((r) => r.url.includes(STREAM_URL.anthropic)).length;
@@ -686,6 +705,13 @@ async function main() {
   const stillOpen = await findTarget(isPanelTarget);
   check('閉じたあとで、もう一度開ける。そのあとに届いた「より前の時刻のクリック」の合図では、閉じない',
     !!reopened && !!stillOpen, `開いた: ${!!reopened} / 残っている: ${!!stillOpen}`);
+
+  // 18. パネルの「×」ボタンを押すと、パネルが閉じる
+  const panel2 = await attach(stillOpen.targetId);
+  await waitFor(() => evaluate(panel2, `!!document.getElementById('close-panel')`));
+  await evaluate(panel2, `document.getElementById('close-panel').click()`);
+  const closedByButton = await waitFor(async () => !(await findTarget(isPanelTarget)), 6000);
+  check('パネルの「×」ボタンを押すと、パネルが閉じる', !!closedByButton);
 }
 
 let failed = false;

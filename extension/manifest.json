@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AIに相談",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "いま見ているページについて、Gemini / OpenAI / Claude に相談できるサイドパネルです。",
   "minimum_chrome_version": "120",
   "permissions": ["sidePanel", "activeTab", "scripting", "storage", "contextMenus", "webRequest"],

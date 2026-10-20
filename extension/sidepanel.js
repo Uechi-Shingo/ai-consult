@@ -625,6 +625,7 @@ el.newChat.addEventListener('click', () => {
   renderAll();
 });
 
+$('close-panel').addEventListener('click', closeSelf); // 会話は、タブごとに保存されているので、閉じても消えない
 el.openOptions.addEventListener('click', () => chrome.runtime.openOptionsPage());
 el.onboardingBtn.addEventListener('click', () => chrome.runtime.openOptionsPage());
 
